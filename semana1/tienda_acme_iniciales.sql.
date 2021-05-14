@@ -1,6 +1,5 @@
 create database if not exists tienda_acme_iniciales;
 use tienda_acme_iniciales;
-
 create table if not exists usuarios(
 id_usuario varchar(30) not null,
 rol integer,
@@ -25,9 +24,9 @@ primary key(id_sku)
 INSERT INTO usuarios
 (id_usuario,rol,estado,nombre_usuario,datos_complememtarios,fecha_actualizacion )
 VALUES
-("45f6g06",02,"axel_toy01","Hidalgo","20 años",CURRENT_TIMESTAMP()),
-("4s850h6",03,"andre_gt02","Chiapas","50 años",CURRENT_TIMESTAMP()),
-("4f8s506",04,"lalo_03","Jalisco","35 años",CURRENT_TIMESTAMP());
+("45f6g06",02,"Hidalgo","axel_toy01","20 años",CURRENT_TIMESTAMP()),
+("4s850h6",03,"Chiapas","andre_gt02","50 años",CURRENT_TIMESTAMP()),
+("4f8s506",04,"Jalisco","lalo_03","35 años",CURRENT_TIMESTAMP());
 
 
 INSERT INTO productos
