@@ -1,1 +1,43 @@
-HOLA
+create database if not exists tienda_acme_iniciales;
+use tienda_acme_iniciales;
+
+create table if not exists usuarios(
+id_usuario varchar(30) not null,
+rol integer,
+estado varchar(20),
+nombre_usuario varchar(150),
+datos_complememtarios varchar(150),
+fecha_actualizacion timestamp,
+primary key(id_usuario)
+)engine=InnoDB;
+
+
+create table if not exists productos(
+id_sku varchar(50) not null,
+nombre_producto varchar(50),
+descripcion varchar(4000),
+nombre_usuario varchar(150),
+precio_unitario float,
+existencias int,
+primary key(id_sku)
+)engine=InnoDB;
+
+INSERT INTO usuarios
+(id_usuario,rol,estado,nombre_usuario,datos_complememtarios,fecha_actualizacion )
+VALUES
+("45f6g06",02,"axel_toy01","Hidalgo","20 años",CURRENT_TIMESTAMP()),
+("4s850h6",03,"andre_gt02","Chiapas","50 años",CURRENT_TIMESTAMP()),
+("4f8s506",04,"lalo_03","Jalisco","35 años",CURRENT_TIMESTAMP());
+
+
+INSERT INTO productos
+(id_sku,nombre_producto,descripcion,nombre_usuario,precio_unitario,existencias)
+VALUES
+("d45f510t6","iphone x 2017","Memoria64 GB — 256 GB,RAM	3 GB,Procesador	Apple A11 Bionic ,Cámara	Doble cámara trasera de 12 MP cada una con gran angular y teleobjetivo, aperturas de ƒ/1.8 y ƒ/2.4, zoom digital de hasta 10x.
+Videocámara trasera	4K a 60 fps; cámara lenta 1080p y 240 fps","Axel Shalim Toy",14187.00,9602585),
+("h74j62h07","iphone 11 ","Procesador: Apple A13 Bionic, 7nm+,Memoria: 4 GB,Almacenamiento: 64 / 256 / 512 GB,Software: iOS 13,Cámaras traseras: Principal: 12MP, f/1.8, 26mm, OIS, QuadLED flash | Secundaria: 12MP, f/2.4, 13mm, 120º | Vídeo: 4K/60fps, 1080p/240fps, HDR,Cámara frontal: 12MP, TOF 3D,Batería: Carga rápida e inalámbrica,Otros: WiFi 802.11 a/ac/ad, BT 5.0, NFC, GPS, altavoces estéreo, resistencia al agua IP67","Andres Delgado Guitierrez",1550.000,8506586) ,
+("h776ftw34","iphone 12","Chipset	64bits - Apple A14 Bionic (5nm),CPU Procesador / Núcleos,Hexa-Core, 2 procesadores: 3.1Ghz Dual-Core Firestorm 1.8Ghz Quad-Core Icestorm,GPU tarjeta gráfica,Apple GPU MP4,Memoria RAM	4GB LPDDR4X","Eduardo Hernandez Sánchez",23899.000,4400058);
+
+
+SELECT * FROM usuarios;
+SELECT * FROM productos;
