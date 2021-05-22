@@ -136,10 +136,14 @@ INSERT INTO `usuarios` (`id_usuario`,`rol`,`estado`,`nombre_usuario`,`datos_comp
 INSERT INTO `usuarios` (`id_usuario`,`rol`,`estado`,`nombre_usuario`,`datos_complementarios`,`fecha_actualizacion`) VALUES ("P7TN4M",1,0,"Drew","Dignissim Pharetra Institute","2021-07-08 00:38:58"),("N7OY8G",1,0,"Phoebe","Ut Consulting","2020-10-27 18:22:40"),("X7ZG7U",1,1,"Ifeoma","Orci PC","2020-07-02 20:05:22"),("E9UD1P",1,0,"Cleo","Suspendisse Aliquet Industries","2022-05-12 10:29:35"),("R0GE7Q",0,1,"Virginia","Velit Aliquam Foundation","2020-12-18 13:02:48"),("P9AZ3B",0,0,"Keegan","In Tempus Eu Limited","2021-11-24 14:51:46"),("M5EZ9O",0,0,"Guinevere","Sed Pharetra Felis LLC","2021-12-15 00:39:47"),("M9DQ0X",0,0,"Allen","Nunc Incorporated","2020-12-26 11:24:03"),("X3VO6F",0,1,"Harding","Malesuada Integer Id Corp.","2021-09-24 14:48:34"),("Z5OF5E",0,0,"Shelley","Est Nunc Ullamcorper Industries","2021-04-30 22:42:05");
 
 
-SELECT*FROM productos WHERE precio_unitario > 5000 ;
-SELECT*FROM productos WHERE precio_unitario BETWEEN 5000 AND 6000;
-SELECT*FROM productos WHERE precio_unitario = 1500;
-SELECT*FROM productos WHERE existencias < 5;
+SELECT precio_unitario 	FROM productos WHERE precio_unitario > 5000 ;
 
-SELECT*FROM usuarios WHERE rol = 1;
+SELECT precio_unitario 	FROM productos WHERE precio_unitario BETWEEN 5000 AND 6000;
+
+SELECT precio_unitario 	FROM productos WHERE precio_unitario = 1500;
+
+SELECT existencias 	FROM productos WHERE existencias < 5;
+
+SELECT rol 	FROM usuarios WHERE rol = 1 ;
+SELECT rol, nombre_usuario FROM usuarios WHERE rol = 0 ;
 
