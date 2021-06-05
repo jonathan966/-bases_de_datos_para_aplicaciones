@@ -1,0 +1,58 @@
+ALTER TABLE direcciones
+ADD no_exterior VARCHAR(6) DEFAULT '0'
+
+ALTER TABLE direcciones
+ADD no_interior VARCHAR(6) DEFAULT '0'
+
+CREATE TABLE proveedores(
+id_proveedor int,
+proveedor varchar(60),
+nombre_contacto varchar(40),
+telefono_contacto varchar(10),
+email_contacto  varchar(30),
+fecha_actualizacion TIMESTAMP,
+primary key(id_proveedor)
+)engine=InnoDB;
+
+INSERT INTO `proveedores` (`id_proveedor`,`proveedor`,`nombre_contacto`,`telefono_contacto`,`email_contacto`,`fecha_actualizacion`) VALUES (1,"Amet Consectetuer Adipiscing Corporation","Roberts, Ira L.","08895631","mus.Proin@rutrumurna.ca","2021-04-14 07:23:47"),(2,"In Molestie Tortor Incorporated","Sullivan, Chiquita O.","05964902","diam.vel.arcu@eleifendnunc.edu","2021-09-03 23:32:19"),(3,"Enim Nec Tempus Corp.","Clarke, Tanner U.","02172929","vel@feugiatSednec.net","2022-03-11 20:34:46"),(4,"Metus Limited","Carr, Hope J.","06228280","lacus.Mauris@Proinnon.ca","2021-06-19 12:13:55"),(5,"A Neque Industries","Curtis, Seth E.","06777029","mi@facilisisnon.edu","2022-05-30 19:54:37");
+
+create table direcciones_proveedores (
+id_direccion INT NOT NULL PRIMARY KEY,
+calle varchar(50),
+colonia varchar(50),
+cp varchar(20),
+municipio varchar(50),
+pais varchar(50),
+no_exterior varchar(5),
+no_interior  varchar(5),
+fecha_actualizacion TIMESTAMP,
+id_proveedor INT,
+FOREIGN KEY (id_proveedor) REFERENCES proveedores(id_proveedor)
+)engine=InnoDB;
+
+
+INSERT INTO `direcciones_proveedores` (`id_direccion`,`calle`,`colonia`,`cp`,`municipio`,`pais`,`no_exterior`,`no_interior`,`fecha_actualizacion`,`id_proveedor`) 
+ VALUES (1,"4246 Nec Road","Horton, Kieran R.","Z4219","Gießen","Paraguay","P0W8","X9E4","2020-09-28 20:41:41",1),
+ (2,"Ap #341-8724 Nulla Rd.","Fisher, Charissa I.","2366","Köthen","Germany","U7L4","X4C9","2022-01-24 02:28:07",2),
+ (3,"P.O. Box 930, 9921 Sagittis Rd.","Cherry, Hakeem W.","34612","Banjarmasin","Saudi Arabia","U5N2","X4E7","2022-01-01 04:16:06",3),
+ (4,"6711 Ut Avenue","Patrick, Damon M.","190780","Lingen","Uzbekistan","Y7D6","W4C9","2021-09-17 14:09:49",4),
+ (5,"Ap #248-1051 Condimentum. St.","Dominguez, Kamal P.","967626","Pembroke","Madagascar","X5Y2","B8D3","2022-04-18 03:11:49",5),
+ (6,"P.O. Box 755, 3288 Dui. Av.","Jacobs, Yoshio Y.","832200","Shimla","French Guiana","J4E6","D7F3","2020-12-03 00:36:20",1),
+ (7,"955-2339 Massa St.","Patrick, Blair D.","4394","Stony Plain","Canada","H1E4","V3S9","2021-11-15 01:01:33",2),
+ (8,"Ap #152-6990 Libero Rd.","Roman, Tanisha V.","87086-068","Kamyzyak","Mongolia","A5A1","W3P8","2020-09-01 15:40:26",3),
+ (9,"Ap #392-3552 Nascetur Ave","Simmons, Colin J.","325284","Carson City","Svalbard and Jan Mayen Islands","S9M9","K6Q6","2020-12-19 21:54:24",4),
+ (10,"P.O. Box 687, 3546 Ullamcorper, Avenue","Franco, Jelani Z.","EF5 3YY","Palmerston","Pakistan","X8W0","U7D7","2021-08-13 14:07:24",5);
+
+
+SELECT * FROM direcciones_proveedores;
+
+SELECT direcciones_proveedores.id_direccion,direcciones_proveedores.calle , direcciones_proveedores.colonia , direcciones_proveedores.cp , direcciones_proveedores.municipio, direcciones_proveedores.pais, direcciones_proveedores.no_exterior,direcciones_proveedores.no_interior,  direcciones_proveedores.id_proveedor, proveedores.proveedor, proveedores.nombre_contacto, proveedores.telefono_contacto, proveedores.email_contacto, proveedores.fecha_actualizacion
+FROM  direcciones_proveedores, proveedores
+WHERE direcciones_proveedores.id_proveedor  = proveedores.id_proveedor;
+
+
+CREATE VIEW proveedores_direcciones_proveedores  AS 
+SELECT direcciones_proveedores.id_direccion,direcciones_proveedores.calle , direcciones_proveedores.colonia , direcciones_proveedores.cp , direcciones_proveedores.municipio, direcciones_proveedores.pais, direcciones_proveedores.no_exterior,direcciones_proveedores.no_interior, direcciones_proveedores.id_proveedor, proveedores.proveedor, proveedores.nombre_contacto, proveedores.telefono_contacto, proveedores.email_contacto, proveedores.fecha_actualizacion
+FROM  direcciones_proveedores, proveedores
+WHERE direcciones_proveedores.id_proveedor  = proveedores.id_proveedor;
+
