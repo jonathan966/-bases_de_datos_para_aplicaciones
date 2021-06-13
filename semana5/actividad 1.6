@@ -1,0 +1,32 @@
+
+create table ventas (
+id_venta INT NOT NULL PRIMARY KEY,
+fecha_venta TIMESTAMP,
+total_venta float,
+id_cliente int,
+FOREIGN KEY (id_cliente) REFERENCES clientes(id_cliente),
+)engine=INNODB;   
+
+
+create table detalle_ventas (
+id_detalle_venta INT NOT NULL PRIMARY KEY,
+cantidad_producto INT,
+precio INT,
+total_x_prucducto int,
+id_venta INT,
+id_producto INT,
+FOREIGN KEY (id_venta) REFERENCES ventas(id_venta),
+FOREIGN KEY (id_producto) REFERENCES productos(id_producto)
+)engine=InnoDB;
+
+
+INSERT INTO detalle_ventas
+(id_detalle_venta,cantidad_producto,precio,total_x_producto,id_venta,id_producto)
+
+VALUES
+(1,4,2000,500,1,1),
+(2,4,5000,1250,2,2),
+(3,4,6000,1500,3,3);
+
+
+SELECT*FROM detalle_ventas;
