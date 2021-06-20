@@ -1,0 +1,50 @@
+TRUNCATE TABLE detalle_ventas;
+
+SET FOREIGN_KEY_CHECKS=0;
+TRUNCATE TABLE ventas;
+SET FOREIGN_KEY_CHECKS=1;
+
+INSERT INTO ventas(id_venta,id_cliente)
+VALUES
+(1,1),
+(2,2),
+(3,3),
+(4,2),
+(5,1),
+(6,3),
+(7,2),
+(8,3),
+(9,1),
+(10,1);
+
+INSERT INTO detalle_ventas(id_detalle_venta,cantidad_producto,precio,id_venta,id_producto)
+VALUES
+(1,2,325,1,5),
+(2,3,400,2,6),
+(3,2,652,3,4),
+(4,3,759,4,3),
+(5,2,800,5,2),
+(6,3,999,6,1),
+(7,2,100,7,9),
+(8,3,352.60,8,10),
+(9,2,200,9,7),
+(10,3,596,10,8);
+
+SELECT detalle_ventas.total_x_producto,ventas.id_venta,ventas.id_cliente,clientes.nombre,clientes.primer_apellido,clientes.segundo_apellido
+FROM  detalle_ventas, ventas , clientes
+WHERE detalle_ventas.id_venta  = ventas.id_venta AND ventas.id_cliente = clientes.id_cliente
+
+
+CREATE VIEW detalle_ventas_ventas_clientes AS
+SELECT detalle_ventas.total_x_producto,ventas.id_venta,ventas.id_cliente,clientes.nombre,clientes.primer_apellido,clientes.segundo_apellido
+FROM  detalle_ventas, ventas , clientes
+WHERE detalle_ventas.id_venta  = ventas.id_venta AND ventas.id_cliente = clientes.id_cliente
+
+SELECT * FROM detalle_ventas_ventas_clientes
+WHERE total_x_producto = (SELECT MAX( total_x_producto) FROM detalle_ventas_ventas_clientes)
+
+SELECT * FROM detalle_ventas_ventas_clientes
+WHERE total_x_producto = (SELECT MIN( total_x_producto) FROM detalle_ventas_ventas_clientes)
+
+
+
